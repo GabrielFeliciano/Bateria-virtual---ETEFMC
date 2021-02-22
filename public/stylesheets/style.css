@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Lobster&family=RocknRoll+One&display=swap');
+
+.navbar {
+    background-color: #a370f7;
+}
+
+h1, h2 { 
+    text-align: center;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3.5em;
+    padding: 1rem 0;
+    background-color: #75b798;
+}
+
+h2 {
+    padding: .5rem 0;
+    font-family: 'Arimo', sans-serif;
+    background-color: #79dfc1;
+}
+
+.controls-painel {
+    padding: 1rem 2rem;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    list-style: none;
+
+    background-image: linear-gradient(
+        0deg,
+        rgb(190, 255, 153),
+        rgb(109, 255, 109)
+    );
+}
+
+.instrument__container {
+    display: flex;
+
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    background-image: linear-gradient(
+        90deg,
+        transparent,
+        transparent 3rem,
+        rgb(255, 95, 148) 3rem,
+        rgb(255, 95, 148) 3.2rem,
+        transparent 3.2rem,
+        transparent 5rem,
+        rgb(111, 95, 255) 5rem,
+        rgb(111, 95, 255) 5.2rem,
+        transparent 5.2rem,
+        transparent
+    );
+    background-color: white;
+    width: 30%;
+    margin: .5rem auto;
+}
+
+.controls-painel .instrument__image {
+    object-fit: fill;
+    width: 10rem;
+    background-color: orange;
+}
+
+.controls-painel .instrument__info {
+    padding: .5rem;
+}
+
+.controls-painel .instrument__name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.controls-painel .instrument__name::before {
+    content: 'Instrumento: ';
+}
+
+.controls-painel .instrument__control {
+    width: 100%;
+}
+
+.controls-painel .instrument__control.focus {
+    border-color: rgb(248, 53, 53);
+    border-style: dashed;
+    border-radius: .3rem;
+}
+
+.controls-painel .instrument__control__container::before {
+    content: 'Botão: ';
+}

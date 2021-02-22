@@ -1,15 +1,19 @@
 import { Soundboard } from "./Soundboard";
-import * as $ from 'jquery';
+import { ControlSetting } from "./ControlSetting";
+import { sounds } from "./sounds";
 
 const soundboard = new Soundboard('public/audio', 'mp3');
-soundboard
-.addSound('bumbo', {key: 'q', charCode: null})
-.addSound('caixa', {key: 'w', charCode: null})
-.addSound('hihat1', {key: 'e', charCode: null})
-.addSound('crash', {key: 'r', charCode: null})
 
-document.body.addEventListener('keypress', event => {
-    soundboard.play(event)
-});
+soundboard.addSoundObserver(sounds => {
+    document.querySelectorAll('.controls-painel').forEach(settingsPainel => {
+        settingsPainel.innerHTML = "";
+        sounds.forEach(sound => {
+            const child = ControlSetting(sound.id, sound.control.key, event => {
+                soundboard.switchSoundKeybind(sound, event);
+            });
+            settingsPainel.appendChild(child);
+        })
+    })
+})
 
-$('<div>')
+soundboard.addMultipleSounds(sounds);
