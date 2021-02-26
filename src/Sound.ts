@@ -35,8 +35,7 @@ export class Sound {
             const audio = new Audio(this.src);
             audio.addEventListener('ended', this.onSoundEnded);
 
-            console.log(this.onSoundStarted);
-            console.log(this.onSoundStarted());
+            this.onSoundStarted();
             audio.play();
         }
     }
