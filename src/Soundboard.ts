@@ -1,5 +1,5 @@
 import { Sound } from "./Sound";
-import { Control, MultipleSound } from "./type";
+import { Control, MultipleSound, SoundOptionalParam } from "./type";
 
 const createUrlBuilder = (urlToSounds: string, extensionSoundFile: string) => {
     return (soundfilename : string): string => (
@@ -44,8 +44,13 @@ export class Soundboard {
         });
     }
 
-    public addSound (soundname: string, control: Control) {
-        const audio = new Sound(control, this.buildUrl(soundname), soundname);
+    public addSound (soundname: string, control: Control, optionalParam: SoundOptionalParam) {
+        const audio = new Sound(
+            control, 
+            this.buildUrl(soundname), 
+            soundname, 
+            optionalParam
+        );
 
         this.sounds.push(audio);
 
@@ -55,8 +60,9 @@ export class Soundboard {
 
     public addMultipleSounds (sounds: MultipleSound[]) {
         sounds.forEach(sound => {
-            const {soundname, ...control} = sound;
-            this.addSound(soundname, control);
+            const {key, charCode, soundname, optionalParam } = sound;
+            const control = {key, charCode};
+            this.addSound(soundname, control, optionalParam || {});
         })
 
         return this;
@@ -70,11 +76,10 @@ export class Soundboard {
     }
 
     private triggerSoundObservers () {
-        console.log(this.soundObservers)
-        this.soundObservers.forEach(observer => observer([...this.sounds]))
+        this.soundObservers.forEach(observer => observer(this.sounds));
     }
 
-    public addSoundObserver (
+    public onSoundsChange (
         observer: (param1: Sound[]) => any
     ) {
         this.soundObservers.push(observer);

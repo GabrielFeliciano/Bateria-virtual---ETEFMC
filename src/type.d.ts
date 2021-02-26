@@ -3,6 +3,11 @@ export interface Control {
     charCode: number | null
 }
 
+export interface SoundOptionalParam {
+    imageUrl?: string
+}
+
 export interface MultipleSound extends Control {
-    soundname: string
+    soundname: string,
+    optionalParam?: SoundOptionalParam
 }

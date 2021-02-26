@@ -1,16 +1,17 @@
 import { Sound } from "./Sound";
-import { Control } from "./type";
+import { Control, SoundOptionalParam } from "./type";
 
 export function ControlSetting (
     partInstrumentName: string, 
     key: string, 
-    switchKey: (event: Control) => any
+    switchKey: (event: Control) => any,
+    soundOptionalParam: SoundOptionalParam
 ) {
     const keyStyled = key.toUpperCase();
 
     // instrument image
     const imageElem = document.createElement('img');
-    imageElem.src = "./";
+    imageElem.src = soundOptionalParam.imageUrl || "./";
     imageElem.classList.add('instrument__image');
 
     // Name
